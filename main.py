@@ -1,11 +1,13 @@
 
 def pass_checker(password):
+    score = 0
     length = len(password)
     has_upper = False
     has_lower = False
     has_digit = False
     has_special = False
     special_characters = "!@#$%^&*()-+"
+    result = ['Weak','Medium','Strong','Error']
     for char in password:
         if char.isupper():
             has_upper = True
@@ -15,7 +17,7 @@ def pass_checker(password):
             has_digit = True
         elif char in special_characters:
             has_special = True
-    score = 0
+    
     if length >= 5:
         score +=1
     if has_upper:
@@ -27,18 +29,22 @@ def pass_checker(password):
     if has_special:
         score+=1
         
-    if score<2:
-        return"u gay bitch"
-    elif score >=2 and score<=4:
-        return"u little gay boi"
-    elif score>=5:
-        return"u no gay boi"
-    else:
-        return"go fuck yourself"
         
+    if score<2:
+        strength = result[0]
+    elif score >=2 and score<=4:
+        strength = result[1]
+    elif score>=5:
+        strength = result[2]
+    else:
+        strength = result[3]
+    
+    return score, strength
+ 
 password = input("Enter password: ")        
-result = pass_checker(password)
-print("u fkin bitch u pass is dis",result)                  
+score,result = pass_checker(password)
+print("Your password is",result) 
+print("Your password score is "+str(score)+"/5")                 
             
             
         
