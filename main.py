@@ -1,4 +1,3 @@
-
 def pass_checker(password):
     score = 0
     length = len(password)
